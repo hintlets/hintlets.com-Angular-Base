@@ -1,4 +1,3 @@
-'use strict';
 
 var qbicApp = angular.module('qbicApp', ['ngRoute']);
 
@@ -55,9 +54,9 @@ qbicApp.controller('AboutController', ['$scope', '$location', 'ConfigurationServ
 /* *                                                                            * */
 /* ****************************************************************************** */
 
-qbicApp.service('UserService', function($http) {
+qbicApp.factory('UserService', function($http, $q) {
     return {
-         users: [
+          users: [
             { id: "1", firstName: "Alex", lastName: "Goettel", age: "36"},
             { id: "2", firstName: "Steffi", lastName: "Goettel", age: "37"},
             { id: "3", firstName: "Moritz", lastName: "Goettel", age: "5"} 
@@ -66,13 +65,11 @@ qbicApp.service('UserService', function($http) {
             this.users.push( user );
         },
         list: function() {
-            /* Load users via JSON from backend */
-            /* $http.get('backend/users.php').then(function(dataResponse) {
-                this.users = dataResponse;
-            });*/
-            /* Give back the resulst */
             return this.users;
-        }            
+        },
+        loadUsers: function() {
+            return this.users;
+        }
     };
 });
 
