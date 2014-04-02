@@ -1,0 +1,21 @@
+<div>
+    <h2>Selected user:</h2>
+    <div>Name: {{selectedUser.firstName}} {{selectedUser.lastName}}</div>
+    <div>Age: {{selectedUser.age}}</div>
+</div>
+
+<H2>Users</H2>
+<table>
+    <tr ng-repeat="user in users()">
+        <td><a href="" ng-click="selectUser(user)">{{user.id}} - {{user.firstName}} {{user.lastName}}, age: {{user.age}}</a></td>    
+    </tr>
+</table>
+
+<h2>Add new user</h2>
+<form ng-submit="addUser(user)">
+    <input type="text" ng-model="user.id" size="30" placeholder="ID">
+    <input type="text" ng-model="user.firstName" size="30" placeholder="first name">
+    <input type="text" ng-model="user.lastName" size="30" placeholder="last name">
+    <input type="text" ng-model="user.age" size="30" placeholder="age">
+    <input class="btn-primary" type="submit" value="add">
+</form>
