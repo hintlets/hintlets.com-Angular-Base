@@ -9,22 +9,9 @@ var qbicApp = angular.module('qbicApp', ['ngRoute']);
 /* ****************************************************************************** */
 
 qbicApp.config(function ($routeProvider) {
-
-	$routeProvider.when('/home', {
-		templateUrl: 'templates/home.html',
-		controller: 'MainController'
-	});
-
-	$routeProvider.when('/login', {
-		templateUrl: 'templates/login.html',
-		controller: 'LoginController'
-	});
-    
-    $routeProvider.when('/about', {
-		templateUrl: 'templates/about.html',
-		controller: 'AboutController'
-	});
-	
+	$routeProvider.when('/home', { templateUrl: 'templates/home.html',	controller: 'MainController' });
+	$routeProvider.when('/login', { templateUrl: 'templates/login.html', controller: 'LoginController' });    
+    $routeProvider.when('/about', {	templateUrl: 'templates/about.html', controller: 'AboutController' });	
 	$routeProvider.otherwise({ redirectTo: '/login'});
 });
 
@@ -68,7 +55,7 @@ qbicApp.controller('AboutController', ['$scope', '$location', 'ConfigurationServ
 /* *                                                                            * */
 /* ****************************************************************************** */
 
-qbicApp.factory('UserService', function() {
+qbicApp.service('UserService', function($http) {
     return {
          users: [
             { id: "1", firstName: "Alex", lastName: "Goettel", age: "36"},
@@ -79,7 +66,11 @@ qbicApp.factory('UserService', function() {
             this.users.push( user );
         },
         list: function() {
-            window.test = this.users;
+            /* Load users via JSON from backend */
+            /* $http.get('backend/users.php').then(function(dataResponse) {
+                this.users = dataResponse;
+            });*/
+            /* Give back the resulst */
             return this.users;
         }            
     };
